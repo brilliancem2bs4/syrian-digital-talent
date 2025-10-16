@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Syrian Digital Talent - Secure Talent Marketplace</title>
+    <title>Syrian Digital Talent - مواهب سورية رقمية</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -26,6 +26,24 @@
         }
         .header-buttons {
             margin: 30px 0 0 0;
+        }
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .lang-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid white;
+            padding: 5px 15px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .lang-btn.active {
+            background: white;
+            color: #2c3e50;
         }
         header h1 {
             font-size: 2.5em;
@@ -118,6 +136,24 @@
             padding: 20px 0;
             margin-top: 40px;
         }
+        
+        /* RTL Support for Arabic */
+        body[dir="rtl"] {
+            text-align: right;
+            font-family: 'Arial', 'Segoe UI', sans-serif;
+        }
+        body[dir="rtl"] .faq-section {
+            text-align: right;
+        }
+        body[dir="rtl"] .faq-answer {
+            margin-left: 0;
+            margin-right: 20px;
+        }
+        body[dir="rtl"] .language-switcher {
+            right: auto;
+            left: 20px;
+        }
+        
         @media (max-width: 600px) {
             .container {
                 width: 95%;
@@ -132,14 +168,19 @@
         }
     </style>
 </head>
-<body>
+<body dir="ltr">
     <header>
         <div class="container">
-            <h1>Syrian Digital Talent</h1>
-            <p>Secure platform connecting Syrian professionals with global clients. Binance/Crypto payments with escrow protection.</p>
+            <div class="language-switcher">
+                <button class="lang-btn active" onclick="switchLanguage('en')">EN</button>
+                <button class="lang-btn" onclick="switchLanguage('ar')">AR</button>
+            </div>
+            
+            <h1 id="main-title">Syrian Digital Talent</h1>
+            <p id="main-subtitle">Secure platform connecting Syrian professionals with global clients. Binance/Crypto payments with escrow protection.</p>
             <div class="header-buttons">
-                <a href="https://forms.gle/d4ZEa86drfiXy91n6" class="btn btn-client">Hire Talent (Clients)</a>
-                <a href="https://forms.gle/SespmMr37nfgsKds6" class="btn btn-talent">Apply as Talent</a>
+                <a href="https://forms.gle/d4ZEa86drfiXy91n6" class="btn btn-client" id="client-btn">Hire Talent (Clients)</a>
+                <a href="https://forms.gle/SespmMr37nfgsKds6" class="btn btn-talent" id="talent-btn">Apply as Talent</a>
             </div>
         </div>
     </header>
@@ -147,26 +188,26 @@
     <!-- How It Works Section -->
     <section class="section">
         <div class="container">
-            <h2>🚀 How It Works</h2>
+            <h2 id="how-it-works-title">🚀 How It Works</h2>
             <div class="step">
                 <div class="step-number">1</div>
-                <h3>Post Project</h3>
-                <p>Client describes needs and budget</p>
+                <h3 id="step1-title">Post Project</h3>
+                <p id="step1-desc">Client describes needs and budget</p>
             </div>
             <div class="step">
                 <div class="step-number">2</div>
-                <h3>Secure Payment</h3>
-                <p>Client pays to our Binance escrow</p>
+                <h3 id="step2-title">Secure Payment</h3>
+                <p id="step2-desc">Client pays to our Binance escrow</p>
             </div>
             <div class="step">
                 <div class="step-number">3</div>
-                <h3>Work Delivered</h3>
-                <p>Talent completes the work</p>
+                <h3 id="step3-title">Work Delivered</h3>
+                <p id="step3-desc">Talent completes the work</p>
             </div>
             <div class="step">
                 <div class="step-number">4</div>
-                <h3>Funds Released</h3>
-                <p>Payment sent after client approval</p>
+                <h3 id="step4-title">Funds Released</h3>
+                <p id="step4-desc">Payment sent after client approval</p>
             </div>
         </div>
     </section>
@@ -174,13 +215,13 @@
     <!-- Trust & Escrow Section -->
     <section class="section trust-section">
         <div class="container">
-            <h2>🔒 Secure Escrow Protection</h2>
-            <p><strong>No Risk for Clients or Talent</strong></p>
+            <h2 id="trust-title">🔒 Secure Escrow Protection</h2>
+            <p><strong id="trust-subtitle">No Risk for Clients or Talent</strong></p>
             <div style="text-align: left; max-width: 600px; margin: 0 auto;">
-                <p>✅ <strong>For Clients:</strong> Pay safely to escrow. Funds only released when you approve the work.</p>
-                <p>✅ <strong>For Talent:</strong> Work with confidence. Payment is guaranteed and secured in escrow.</p>
-                <p>✅ <strong>Dispute Resolution:</strong> We mediate fairly if issues arise.</p>
-                <p>✅ <strong>Transparent Fees:</strong> 20% platform fee covers escrow protection and support.</p>
+                <p>✅ <strong id="trust1">For Clients:</strong> Pay safely to escrow. Funds only released when you approve the work.</p>
+                <p>✅ <strong id="trust2">For Talent:</strong> Work with confidence. Payment is guaranteed and secured in escrow.</p>
+                <p>✅ <strong id="trust3">Dispute Resolution:</strong> We mediate fairly if issues arise.</p>
+                <p>✅ <strong id="trust4">Transparent Fees:</strong> 20% platform fee covers escrow protection and support.</p>
             </div>
         </div>
     </section>
@@ -188,41 +229,21 @@
     <!-- FAQ Section -->
     <section class="section faq-section">
         <div class="container">
-            <h2>❓ Frequently Asked Questions</h2>
+            <h2 id="faq-title">❓ Frequently Asked Questions</h2>
             
             <div class="faq-item">
-                <div class="faq-question">For Clients: How does the escrow payment work?</div>
-                <div class="faq-answer">You pay the project amount to our Binance escrow wallet. We hold the funds securely until you approve the delivered work. Only then do we release payment to the talent.</div>
+                <div class="faq-question" id="faq1-q">For Clients: How does the escrow payment work?</div>
+                <div class="faq-answer" id="faq1-a">You pay the project amount to our Binance escrow wallet. We hold the funds securely until you approve the delivered work. Only then do we release payment to the talent.</div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">For Talent: When do I get paid?</div>
-                <div class="faq-answer">Immediately after client approval! Once the client confirms they're happy with your work, we release the escrow funds to your Binance wallet within hours.</div>
+                <div class="faq-question" id="faq2-q">For Talent: When do I get paid?</div>
+                <div class="faq-answer" id="faq2-a">Immediately after client approval! Once the client confirms they're happy with your work, we release the escrow funds to your Binance wallet within hours.</div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">What payment methods do you accept?</div>
-                <div class="faq-answer">We specialize in Binance, USDT, and other major cryptocurrencies. We also accept Western Union for clients who prefer traditional methods.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">What's your platform fee?</div>
-                <div class="faq-answer">We charge 20% which covers escrow protection, client support, dispute resolution, and platform maintenance. This ensures a safe experience for everyone.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">How do you vet Syrian talent?</div>
-                <div class="faq-answer">Every professional undergoes skill testing, portfolio review, and communication assessment. We only accept talent who meet our quality standards.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">What if there's a dispute about the work?</div>
-                <div class="faq-answer">We provide fair mediation. If work doesn't meet requirements, we work with both parties to find a solution - whether that's revisions, partial payment, or full refund.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">Can I start with a small project?</div>
-                <div class="faq-answer">Absolutely! We welcome projects starting from $25 for small tasks, quick fixes, or testing our services before committing to larger projects.</div>
+                <div class="faq-question" id="faq3-q">What payment methods do you accept?</div>
+                <div class="faq-answer" id="faq3-a">We specialize in Binance, USDT, and other major cryptocurrencies. We also accept Western Union for clients who prefer traditional methods.</div>
             </div>
         </div>
     </section>
@@ -230,20 +251,135 @@
     <!-- Success Stories -->
     <section class="section success-section">
         <div class="container">
-            <h2>✅ Trusted by Syrian Talent & Global Clients</h2>
+            <h2 id="success-title">✅ Trusted by Syrian Talent & Global Clients</h2>
             <div style="max-width: 600px; margin: 0 auto;">
-                <p><em>"Paid $500 via Binance escrow - got amazing website development! The escrow system made me feel safe."</em> - Client from Europe</p>
-                <p><em>"Received $400 for my design work within hours of client approval. No payment delays!"</em> - Syrian Designer</p>
-                <p><em>"Finally a platform that understands our payment challenges and provides real solutions."</em> - Syrian Developer</p>
+                <p><em id="testimonial1">"Paid $500 via Binance escrow - got amazing website development! The escrow system made me feel safe."</em> - Client from Europe</p>
+                <p><em id="testimonial2">"Received $400 for my design work within hours of client approval. No payment delays!"</em> - Syrian Designer</p>
             </div>
         </div>
     </section>
     
     <footer>
         <div class="container">
-            <p>Contact: brilliancem2bs4@gmail.com | Telegram: @syriandigitaltalent</p>
-            <p>100% Secure Escrow Payments via Binance | Supporting Syrian Talent Worldwide</p>
+            <p id="contact-info">Contact: brilliancem2bs4@gmail.com | Telegram: @syriandigitaltalent</p>
+            <p id="payment-info">100% Secure Escrow Payments via Binance | Supporting Syrian Talent Worldwide</p>
         </div>
     </footer>
+
+    <script>
+        const translations = {
+            en: {
+                // Header
+                "main-title": "Syrian Digital Talent",
+                "main-subtitle": "Secure platform connecting Syrian professionals with global clients. Binance/Crypto payments with escrow protection.",
+                "client-btn": "Hire Talent (Clients)",
+                "talent-btn": "Apply as Talent",
+                
+                // How It Works
+                "how-it-works-title": "🚀 How It Works",
+                "step1-title": "Post Project",
+                "step1-desc": "Client describes needs and budget",
+                "step2-title": "Secure Payment", 
+                "step2-desc": "Client pays to our Binance escrow",
+                "step3-title": "Work Delivered",
+                "step3-desc": "Talent completes the work",
+                "step4-title": "Funds Released",
+                "step4-desc": "Payment sent after client approval",
+                
+                // Trust Section
+                "trust-title": "🔒 Secure Escrow Protection",
+                "trust-subtitle": "No Risk for Clients or Talent",
+                "trust1": "For Clients:",
+                "trust2": "For Talent:",
+                "trust3": "Dispute Resolution:",
+                "trust4": "Transparent Fees:",
+                
+                // FAQ
+                "faq-title": "❓ Frequently Asked Questions",
+                "faq1-q": "For Clients: How does the escrow payment work?",
+                "faq1-a": "You pay the project amount to our Binance escrow wallet. We hold the funds securely until you approve the delivered work. Only then do we release payment to the talent.",
+                "faq2-q": "For Talent: When do I get paid?",
+                "faq2-a": "Immediately after client approval! Once the client confirms they're happy with your work, we release the escrow funds to your Binance wallet within hours.",
+                "faq3-q": "What payment methods do you accept?",
+                "faq3-a": "We specialize in Binance, USDT, and other major cryptocurrencies. We also accept Western Union for clients who prefer traditional methods.",
+                
+                // Success Stories
+                "success-title": "✅ Trusted by Syrian Talent & Global Clients",
+                "testimonial1": "\"Paid $500 via Binance escrow - got amazing website development! The escrow system made me feel safe.\"",
+                "testimonial2": "\"Received $400 for my design work within hours of client approval. No payment delays!\"",
+                
+                // Footer
+                "contact-info": "Contact: brilliancem2bs4@gmail.com | Telegram: @syriandigitaltalent",
+                "payment-info": "100% Secure Escrow Payments via Binance | Supporting Syrian Talent Worldwide"
+            },
+            ar: {
+                // Header
+                "main-title": "مواهب سورية رقمية",
+                "main-subtitle": "منصة آمنة تواصل المحترفين السوريين مع العملاء العالميين. دفعات عبر Binance والعملات المشفرة مع حماية الضمان.",
+                "client-btn": "وظف مواهب (عملاء)",
+                "talent-btn": "قدم كموهبة",
+                
+                // How It Works
+                "how-it-works-title": "🚀 كيف تعمل المنصة",
+                "step1-title": "انشر المشروع",
+                "step1-desc": "العميل يصف الاحتياجات والميزانية",
+                "step2-title": "دفع آمن",
+                "step2-desc": "العميل يدفع لحساب الضمان في Binance",
+                "step3-title": "تسليم العمل",
+                "step3-desc": "الموهبة تنفذ العمل المطلوب",
+                "step4-title": "تحرير الأموال",
+                "step4-desc": "الدفع بعد موافقة العميل",
+                
+                // Trust Section
+                "trust-title": "🔒 حماية الضمان الآمن",
+                "trust-subtitle": "لا مخاطرة للعملاء أو المواهب",
+                "trust1": "للعملاء:",
+                "trust2": "للمواهب:",
+                "trust3": "حل النزاعات:",
+                "trust4": "رسوم شفافة:",
+                
+                // FAQ
+                "faq-title": "❓ الأسئلة الشائعة",
+                "faq1-q": "للعملاء: كيف يعمل نظام الدفع بالضمان؟",
+                "faq1-a": "تدفع مبلغ المشروع لمحفظة الضمان في Binance. نحتفظ بالأموال بأمان حتى توافق على العمل المسلّم. فقط عندها نحرر الدفع للموهبة.",
+                "faq2-q": "للمواهب: متى أحصل على الدفع؟",
+                "faq2-a": "مباشرة بعد موافقة العميل! حالما يؤكد العميل رضاه عن عملك، نحرر أموال الضمان لمحفظتك في Binance خلال ساعات.",
+                "faq3-q": "ما طرق الدفع التي تقبلونها؟",
+                "faq3-a": "نتخصص في Binance, USDT، والعملات المشفرة الرئيسية. نقبل أيضاً Western Union للعملاء الذين يفضلون الطرق التقليدية.",
+                
+                // Success Stories
+                "success-title": "✅ موثوق من المواهب السورية والعملاء العالميين",
+                "testimonial1": "\"دفعت 500$ عبر ضمان Binance - وحصلت على تطوير موقع رائع! نظام الضمان جعلني أشعر بالأمان.\"",
+                "testimonial2": "\"استلمت 400$ مقابل عملي التصميمي خلال ساعات من موافقة العميل. لا تأخير في الدفع!\"",
+                
+                // Footer
+                "contact-info": "الاتصال: brilliancem2bs4@gmail.com | Telegram: @syriandigitaltalent",
+                "payment-info": "مدفوعات ضمان آمنة 100% عبر Binance | دعم المواهب السورية حول العالم"
+            }
+        };
+
+        function switchLanguage(lang) {
+            // Update button active state
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update text direction
+            document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            
+            // Update all text elements
+            for (const [key, value] of Object.entries(translations[lang])) {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.textContent = value;
+                }
+            }
+        }
+
+        // Set initial language based on browser or default to English
+        const userLang = navigator.language || navigator.userLanguage;
+        if (userLang.startsWith('ar')) {
+            switchLanguage('ar');
+        }
+    </script>
 </body>
 </html>
